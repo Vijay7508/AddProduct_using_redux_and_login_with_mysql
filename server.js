@@ -142,7 +142,7 @@ app.post('/register', upload.single('file'), (req, res, next) => {
           password:req.body.password,
           email:req.body.email,
           image:imagename,
-          type:"admin"
+          type:"customer"
 
       };
      console.log(data);

@@ -12,14 +12,14 @@ export default function Login(props) {
   const valueContext=useContext(NoteContext);
   console.log(valueContext);
 
-  const      [username, setUserName] = useState('');
+  const      [email, setEmail] = useState('');
   const      [password, setPassword] = useState(''); 
  const navigate = useNavigate();
    
   function handleChange1(e)  {
     e.preventDefault();
       
-    setUserName(e.target.value);
+    setEmail(e.target.value);
   };
   function handleChange2(e)  {
     e.preventDefault();
@@ -27,51 +27,14 @@ export default function Login(props) {
     setPassword(e.target.value);
   }; 
   async function mysubmit() 
-    {
-
-  const data={"username":username,"password":password};
-
-     const config = {
-        method: 'POST',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data)
-    }
-    const response = await fetch('http://localhost:4200/login', config)    
-    const json = await response.json();
-    console.log(json)
-    valueContext.setUser(json[0].username);
-    valueContext.setPassword(json[0].password);
-    valueContext.setType(json[0].type);
-    valueContext.setImage(json[0].image);
-
-
-
-
-
- 
-
-console.log(json);
-if(json.length==0)
-  {
-   console.log("invalid user try again");
-     
-    }
-else if(json[0].type=="admin")
- { console.log("welcome admin");
-      navigate("/admin");
-  }
-else if(json[0].type=="customer")
- { console.log("customer ");
-    localStorage.setItem("cname",username);
-     navigate("/customer");
-  }
-
-
+   
+    // const response = Axios.post(' https://sakibapi.onrender.com/api/auth/login',{
+      email,
+      password
+      
+    })    
+    console.log(response.data)
     
-}
   return (
 
 <>
@@ -86,8 +49,8 @@ else if(json[0].type=="customer")
           type="text"
           id="username"
           name="username"
-          placeholder='Enter Your Name'
-          value={username}
+          placeholder='Please Enter Email'
+          value={email}
           onChange={handleChange1}
           required
         />

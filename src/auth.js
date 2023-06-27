@@ -1,39 +1,41 @@
+import axios from 'axios';
 import React, { useState } from 'react';
 
+
 const LoginForm = () => {
+  const [name, setName] = useState('')
   const [email, setEmail] = useState('');
+  console.log(email);
   const [password, setPassword] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+
     // Perform API request to authenticate user
     try {
-      const response = await fetch('http://localhost:4200/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ email, password })
+      const response = await axios.post('https://sakibapi.onrender.com/api/auth/register', {
+        name,
+        email,
+        password
       });
 
-      if (response.ok) {
-        // Authentication successful
-        // Redirect user or perform any necessary actions
-        console.log('Authentication successful');
-      } else {
-        // Authentication failed
-        // Handle error or show appropriate message to the user
-        console.log('Authentication failed');
-      }
+      // Handle the successful registration response as needed
+      console.log(response.data.token);
     } catch (error) {
-      // Handle error
-      console.error('An error occurred', error);
+      // Handle error cases, such as displaying an error message
+      console.error(error);
     }
   };
 
   return (
     <form onSubmit={handleSubmit}>
+    <input
+        type="name"
+        placeholder="name"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+      />
       <input
         type="email"
         placeholder="Email"
@@ -46,7 +48,7 @@ const LoginForm = () => {
         value={password}
         onChange={(e) => setPassword(e.target.value)}
       />
-      <button type="submit">Login</button>
+      <button type="submit">Register</button>
     </form>
   );
 };

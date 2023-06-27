@@ -1,11 +1,15 @@
 import Axios from "axios";
 import React, { useState,useEffect } from 'react';
 import { Form,FormControl,Button,Container,Table } from 'react-bootstrap'
+import { useSelector } from 'react-redux';
+
    
 export default function View_cart()
 {
   
    const [mylist,setList]= useState([]);
+   const getData = useSelector((vijay)=>vijay.data);
+
 
 // this is called repeatedly when ever u render
 useEffect(() => {
@@ -50,14 +54,15 @@ useEffect(() => {
 <th>Image</th> <th>Id </th> <th> Name</th><th> Price </th><th>Delete</th> <th>Edit</th>
 </thead>
 <tbody>
-                        {mylist.map((item,index)=>{
+                        {getData.map((item,index)=>{
                             
                             return(
                                 <tr key={index}>
-                                    <td><img src={item.product_image} width="200" height="200" alt="image" /></td>
-                                    <td>{item.product_id}</td>
-                                    <td>{item.product_name}</td>
-                                    <td>{item.product_price}</td>
+                                    <td><img src={item.image.name} width="200" height="200" alt="image" /></td>
+                                    <td>{item.Product_name}</td>
+                                    <td>{item.Product_price}</td>
+                                    <td>{item.Quantity}</td>
+
                                 <td>
                                 <Button variant="danger"
                       id={item.product_id}

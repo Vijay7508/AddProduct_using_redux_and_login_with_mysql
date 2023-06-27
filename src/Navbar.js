@@ -10,8 +10,14 @@ function NavBar() {
     const Navigate = useNavigate()
 
     let Added=()=>{
-      Navigate("/viewcart");
+      Navigate("/Customer");
 
+    }
+    const home =()=>{
+      Navigate("/");
+    }
+    const about =()=>{
+      Navigate("/about");
     }
 
   return (
@@ -23,8 +29,8 @@ function NavBar() {
   <Navbar.Toggle aria-controls="responsive-navbar-nav" />
   <Navbar.Collapse id="responsive-navbar-nav">
     <Nav className="me-auto">
-      <Nav.Link href="/">Home</Nav.Link>
-      <Nav.Link href="/about">About Us</Nav.Link>
+      <Nav.Link onClick={home}>Home</Nav.Link>
+      <Nav.Link onClick={about}>About Us</Nav.Link>
       <Nav.Link onClick={Added}>See Your Cart</Nav.Link>
     </Nav>
     <Nav>

@@ -5,8 +5,10 @@ import AddedData from './components/AddedData';
 import Payment from './components/payment';
 import Home from './components/Home';
 import Register from './components/Register';
+import PrivateRoute from "./Authenticated";
 
-import { Route, Link, Routes} from 'react-router-dom';
+
+import { Route, Routes} from 'react-router-dom';
 
 import NoteState from './NoteContext/NoteState';
 
@@ -18,11 +20,13 @@ function App() {
 <Vijay/>
 <Routes>
 <Route path="/" element={<Home/>} />
+
      <Route  path="/customer" element={<Customer/>} />
     <Route  path="/login" element={<Login/>} />
-    <Route  path="/admin" element={<Admin/>} />
-    <Route  path="/register" element={<Register/>} />
 
+    <Route path="/admin" element={<PrivateRoute/>} />
+  
+    <Route  path="/register" element={<auth/>} />
 
 
     <Route  path="/viewcart" element={<AddedData/>} />
